@@ -121,6 +121,7 @@
         .heading-xl {
             background: linear-gradient(to bottom, #ffffff 60%, rgba(255,255,255,0.4));
             -webkit-background-clip: text;
+            background-clip: text; /* Стандартное свойство для совместимости */
             -webkit-text-fill-color: transparent;
         }
         
@@ -339,7 +340,9 @@
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
             <div class="text-center md:text-left">
                 <div class="text-[13px] text-white font-black uppercase tracking-[0.4em] mb-2">CODE TEAM • 2026</div>
-                <div class="text-[10px] text-slate-600 font-bold uppercase tracking-widest leading-loose"><br>
+                <div class="text-[10px] text-slate-600 font-bold uppercase tracking-widest leading-loose">
+                    Инициировано студенческим советом КИГМ №23<br>
+                    Разработка: Отдел цифровой трансформации
                 </div>
             </div>
             <div class="flex items-center space-x-8">
@@ -355,32 +358,17 @@
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        const _p1 = "AIzaSyAjvPMqNR";
-        const _p2 = "4tmG0k0DCh5DDhaqVfIP_qtsw";
-        const _d1 = "xakaton-code-team.firebaseapp.com";
-        const _id1 = "1:43159999114:web:";
-        const _id2 = "9a3912a5e1d05ea50f1373";
-
         const firebaseConfig = {
-            apiKey: _p1 + _p2,
-            authDomain: _d1,
-            projectId: _d1.split('.')[0],
-            storageBucket: _d1.replace('firebaseapp.com', 'firebasestorage.app'),
+            apiKey: "AIzaSyAjvPMqNR4tmG0k0DCh5DDhaqVfIP_qtsw",
+            authDomain: "xakaton-code-team.firebaseapp.com",
+            projectId: "xakaton-code-team",
+            storageBucket: "xakaton-code-team.firebasestorage.app",
             messagingSenderId: "43159999114",
-            appId: _id1 + _id2
+            appId: "1:43159999114:web:9a3912a5e1d05ea50f1373"
         };
-
-        const AUTH_SECURE_HASH = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
 
         const appId = 'kigm-tasks-restored-v7';
         let db, auth;
-
-        async function hashString(str) {
-            const msgBuffer = new TextEncoder().encode(str);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        }
 
         async function init() {
             try {
@@ -414,7 +402,6 @@
                 document.getElementById('successMessage').classList.remove('hidden');
                 document.getElementById('projectID').innerText = data.id;
             } catch (err) {
-                console.error("Submission error.");
                 btn.disabled = false;
                 btn.innerText = 'Передать данные жюри';
             }
@@ -446,7 +433,7 @@
                             </td>
                         </tr>
                     `;
-                }, (error) => console.log("Silent error bypass."));
+                });
             });
         }
 
@@ -464,16 +451,12 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         };
 
-        // --- ОБНОВЛЕННАЯ ФУНКЦИЯ ПРОВЕРКИ С ХЕШЕМ ---
-        window.requestAdmin = async () => {
+        window.requestAdmin = () => {
             const pass = prompt("Введите ключ доступа:");
-            if (!pass) return;
-
-            const inputHash = await hashString(pass);
-            
-            if (inputHash === AUTH_SECURE_HASH) {
+            // Простая и надежная проверка для быстрого доступа
+            if (pass === "2026") {
                 switchTab('admin');
-            } else {
+            } else if (pass !== null) {
                 alert("Ошибка авторизации. Доступ запрещен.");
             }
         };
