@@ -22,8 +22,8 @@ service cloud.firestore {
       // Разрешить удаление авторизованным пользователям (проверка доступа на клиенте)
       allow delete: if request.auth != null;
       
-      // Запретить обновление
-      allow update: if false;
+      // Разрешить обновление авторизованным пользователям (для оценивания)
+      allow update: if request.auth != null;
     }
     
     // Правила для админ-конфигурации

@@ -85,6 +85,251 @@
         button:not([disabled]) {
             cursor: pointer;
         }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+        }
+
+        .toast {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideIn 0.3s ease-out, slideOut 0.3s ease-out 4.2s forwards;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(400px); opacity: 0; }
+        }
+
+        .toast.success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .toast.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .toast.info {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .toast.warning {
+            background: rgba(f59e0b, 0.1);
+            color: #f59e0b;
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            padding: 16px 0;
+            z-index: 40;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .mobile-menu button {
+            padding: 12px 24px;
+            text-align: left;
+            border: none;
+            background: none;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .mobile-menu button:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .burger-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .burger-btn {
+                display: block;
+            }
+        }
+
+        /* Checkbox */
+        .checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #3b82f6;
+        }
+
+        .checkbox-wrapper label {
+            font-size: 14px;
+            color: #94a3b8;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .checkbox-wrapper a {
+            color: #3b82f6;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .checkbox-wrapper a:hover {
+            color: #60a5fa;
+        }
+
+        /* Terms/Privacy Modals */
+        .docs-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 50;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .docs-modal.active {
+            display: flex;
+        }
+
+        .docs-modal-content {
+            background: rgba(13, 17, 23, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 32px;
+        }
+
+        .docs-modal-content h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .docs-modal-content p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+        }
+
+        .docs-modal-content h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            color: #e2e8f0;
+        }
+
+        .docs-modal-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 12px;
+        }
+
+        .docs-modal-content li {
+            font-size: 14px;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .docs-modal-content li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+        }
+
+        .docs-modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .docs-modal-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .docs-modal-buttons button.close {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .docs-modal-buttons button.close:hover {
+            background: rgba(59, 130, 246, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -95,18 +340,29 @@
                 <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
                     <i class="fas fa-code text-white text-lg"></i>
                 </div>
-                <span class="text-xl font-black tracking-tighter uppercase">Студкод <span class="text-blue-500">2026</span></span>
+                <span class="text-lg md:text-xl font-black tracking-tighter uppercase">Студкод <span class="text-blue-500">2026</span></span>
             </div>
             
             <div class="hidden md:flex items-center gap-8">
                 <button onclick="switchTab('home')" id="btn-home-nav" class="nav-link text-sm font-medium transition-colors py-2 active">Главная</button>
                 <button onclick="switchTab('submit')" id="btn-submit-nav" class="nav-link text-sm font-medium transition-colors py-2">Подать проект</button>
             </div>
+
+            <!-- Бургер-меню -->
+            <button class="burger-btn" id="burgerBtn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
+    <!-- Мобильное меню -->
+    <div id="mobileMenu" class="mobile-menu md:hidden">
+        <button onclick="switchTab('home'); closeMobileMenu()">Главная</button>
+        <button onclick="switchTab('submit'); closeMobileMenu()">Подать проект</button>
+    </div>
+
     <!-- Главная страница -->
-    <main id="tab-home" class="tab-content active pt-40 pb-20 relative">
+    <main id="tab-home" class="tab-content active pt-24 md:pt-40 pb-20 relative">
         <div class="max-w-7xl mx-auto px-6">
             <div class="max-w-3xl mb-16">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
@@ -212,7 +468,7 @@
     </main>
 
     <!-- Секция подачи -->
-    <section id="tab-submit" class="tab-content pt-32 pb-20">
+    <section id="tab-submit" class="tab-content pt-20 md:pt-32 pb-20">
         <div class="max-w-2xl mx-auto px-6">
             <div class="text-center mb-10">
                 <h2 class="text-4xl font-black mb-4 uppercase tracking-tight">Регистрация</h2>
@@ -262,6 +518,13 @@
                     </div>
                 </div>
 
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <label for="agreeTerms">
+                        Я согласен с <a onclick="openTermsModal()">Условиями использования</a> и <a onclick="openPrivacyModal()">Политикой конфиденциальности</a>
+                    </label>
+                </div>
+
                 <button type="submit" class="w-full py-4 bg-blue-600 hover:bg-blue-700 rounded-xl font-bold transition-all shadow-lg shadow-blue-600/20 transform active:scale-95 flex items-center justify-center gap-2">
                     <i class="fas fa-paper-plane"></i>
                     Передать данные жюри
@@ -271,7 +534,7 @@
     </section>
 
     <!-- Админ-панель -->
-    <section id="tab-admin" class="tab-content pt-32 pb-20">
+    <section id="tab-admin" class="tab-content pt-20 md:pt-32 pb-20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between items-end mb-8">
                 <div>
@@ -299,6 +562,7 @@
                                 <th class="px-6 py-4 font-bold uppercase tracking-wider text-slate-500">Команда / Капитан</th>
                                 <th class="px-6 py-4 font-bold uppercase tracking-wider text-slate-500 text-center">Группа</th>
                                 <th class="px-6 py-4 font-bold uppercase tracking-wider text-slate-500">Ресурсы проекта</th>
+                                <th class="px-6 py-4 font-bold uppercase tracking-wider text-slate-500 text-center">Оценка</th>
                                 <th class="px-6 py-4 font-bold uppercase tracking-wider text-slate-500 text-right">Управление</th>
                             </tr>
                         </thead>
@@ -366,14 +630,116 @@
     </div>
 
     <footer class="py-12 border-t border-white/5 opacity-60 text-center">
-        <p class="text-xs text-slate-500 uppercase tracking-widest">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-4">
             &copy; 2026 Студкод | Инициировано Центром карьеры КИГМ №23
         </p>
+        <div class="flex justify-center gap-6 text-xs text-slate-600">
+            <button onclick="openTermsModal()" class="hover:text-slate-400 transition-colors">Условия использования</button>
+            <span>|</span>
+            <button onclick="openPrivacyModal()" class="hover:text-slate-400 transition-colors">Политика конфиденциальности</button>
+        </div>
     </footer>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Модальное окно Terms of Service -->
+    <div id="termsModal" class="docs-modal">
+        <div class="docs-modal-content">
+            <h2>Условия использования</h2>
+            <p><strong>Дата вступления в силу: 27 марта 2026</strong></p>
+
+            <p>Эти условия описывают, как участники могут использовать платформу Студкод 2026.</p>
+            <p>При отправке проекта вы подтверждаете, что предоставленные данные корректны и вы принимаете дальнейшие результаты оценивания.</p>
+            <p>Организаторы сохраняют за собой право удалять заявки, нарушающие правила честной игры.</p>
+
+            <div class="docs-modal-buttons">
+                <button class="close" onclick="closeTermsModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно Privacy Policy -->
+    <div id="privacyModal" class="docs-modal">
+        <div class="docs-modal-content">
+            <h2>Политика конфиденциальности</h2>
+            <p><strong>Дата вступления в силу: 27 марта 2026</strong></p>
+
+            <p>Собранные при регистрации данные используются только для работы хакатона и оценки проектов.</p>
+            <p>Данные хранятся в Firebase, доступ имеют только авторизованные сотрудники команды.</p>
+            <p>Вы можете в любой момент запросить удаление своей заявки после завершения хакатона.</p>
+
+            <div class="docs-modal-buttons">
+                <button class="close" onclick="closePrivacyModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для оценивания проекта -->
+    <div id="ratingModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 class="text-2xl font-black text-white" id="ratingModalTitle">Оценить проект</h3>
+                        <p class="text-slate-400 text-sm mt-1" id="ratingModalTeam"></p>
+                    </div>
+                    <button onclick="closeRatingModal()" class="text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <form id="ratingForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="text-xs font-bold uppercase text-slate-500 tracking-wide">Функциональность<span class="text-blue-400">: <span id="score1">0</span>/20</span></label>
+                            <input type="range" id="rating1" min="0" max="20" value="0" class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer" oninput="document.getElementById('score1').textContent = this.value">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold uppercase text-slate-500 tracking-wide">Дизайн/UX<span class="text-emerald-400">: <span id="score2">0</span>/20</span></label>
+                            <input type="range" id="rating2" min="0" max="20" value="0" class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer" oninput="document.getElementById('score2').textContent = this.value">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold uppercase text-slate-500 tracking-wide">Техническая реализация<span class="text-purple-400">: <span id="score3">0</span>/20</span></label>
+                            <input type="range" id="rating3" min="0" max="20" value="0" class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer" oninput="document.getElementById('score3').textContent = this.value">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold uppercase text-slate-500 tracking-wide">Инновация/Идея<span class="text-yellow-400">: <span id="score4">0</span>/20</span></label>
+                            <input type="range" id="rating4" min="0" max="20" value="0" class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer" oninput="document.getElementById('score4').textContent = this.value">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="text-xs font-bold uppercase text-slate-500 tracking-wide">Презентация проекта<span class="text-pink-400">: <span id="score5">0</span>/20</span></label>
+                            <input type="range" id="rating5" min="0" max="20" value="0" class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer" oninput="document.getElementById('score5').textContent = this.value">
+                        </div>
+                    </div>
+
+                    <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                        <p class="text-sm text-slate-300 mb-2"><strong>Итоговая оценка:</strong></p>
+                        <div class="text-3xl font-black text-blue-400"><span id="totalScore">0</span>/100</div>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold uppercase text-slate-500 tracking-wide mb-2 block">Комментарий (опционально)</label>
+                        <textarea id="ratingComment" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-blue-500 transition-all text-white placeholder-slate-500 resize-none" placeholder="Ваш комментарий..." rows="4" maxlength="500"></textarea>
+                        <p class="text-xs text-slate-500 mt-1"><span id="charCount">0</span>/500</p>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button type="submit" class="flex-1 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl font-bold transition-all shadow-lg shadow-blue-600/20">
+                            <i class="fas fa-star"></i> Сохранить оценку
+                        </button>
+                        <button type="button" onclick="closeRatingModal()" class="flex-1 py-3 bg-slate-700 hover:bg-slate-600 rounded-xl font-bold transition-all">
+                            Отмена
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
         // Firebase Config
@@ -386,6 +752,48 @@
         const ADMIN_SECRET_KEY = 'kigm23';  
 
         let currentUser = null;
+        let currentRatingProjectId = null;
+
+        // Управление мобильным меню
+        window.toggleMobileMenu = () => {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        };
+
+        window.closeMobileMenu = () => {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.remove('active');
+        };
+
+        // Закрытие меню при клике вне
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('mobileMenu');
+            const burger = document.getElementById('burgerBtn');
+            if (!menu?.contains(e.target) && !burger?.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Toast Notification System
+        window.toast = (message, type = 'info', duration = 4000) => {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const icons = {
+                success: 'fa-check-circle',
+                error: 'fa-exclamation-circle',
+                info: 'fa-info-circle',
+                warning: 'fa-exclamation-triangle'
+            };
+            
+            toast.innerHTML = `<i class="fas ${icons[type]}"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, duration);
+        };
 
         // Навигация
         window.switchTab = (tab) => {
@@ -418,12 +826,12 @@
             const adminKey = urlParams.get('admin');
             
             if (!adminKey) {
-                alert("Требуется ключ доступа");
+                window.toast("Требуется ключ доступа", 'warning');
                 return false;
             }
             
             if (adminKey !== ADMIN_SECRET_KEY) {
-                alert("Неверный ключ доступа");
+                window.toast("Неверный ключ доступа", 'error');
                 return false;
             }
             
@@ -448,9 +856,10 @@
                 try {
                     await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'submissions', id));
                     console.log("✅ Проект удален");
+                    window.toast('Проект удален', 'success');
                 } catch (err) {
                     console.error("Delete error:", err);
-                    alert("Ошибка при удалении: " + (err.message || "Попробуйте позже"));
+                    window.toast("Ошибка при удалении: " + (err.message || "Попробуйте позже"), 'error');
                 }
             }
         };
@@ -498,7 +907,7 @@
                 }
             } catch (err) {
                 console.error("View error:", err);
-                alert("Ошибка при загрузке проекта: " + (err.message || "Попробуйте позже"));
+                window.toast("Ошибка при загрузке проекта: " + (err.message || "Попробуйте позже"), 'error');
             }
         };
 
@@ -511,6 +920,68 @@
         window.closeAdminAuthModal = () => {
             document.getElementById('adminAuthModal').classList.add('hidden');
         };
+
+        // Открытие модала оценивания
+        window.openRatingModal = async (id, teamName) => {
+            currentRatingProjectId = id;
+            document.getElementById('ratingModalTitle').textContent = 'Оценить проект';
+            document.getElementById('ratingModalTeam').textContent = `Команда: ${teamName}`;
+            
+            // Загрузить существующую оценку
+            await loadRating(id);
+            
+            document.getElementById('ratingModal').classList.remove('hidden');
+        };
+
+        // Закрытие модала оценивания
+        window.closeRatingModal = () => {
+            document.getElementById('ratingModal').classList.add('hidden');
+            currentRatingProjectId = null;
+        };
+
+        // Загрузить оценку из Firestore
+        async function loadRating(id) {
+            try {
+                const docSnap = await getDoc(doc(db, 'artifacts', appId, 'public', 'data', 'submissions', id));
+                if (docSnap.exists() && docSnap.data().rating) {
+                    const rating = docSnap.data().rating;
+                    document.getElementById('rating1').value = rating.functionality || 0;
+                    document.getElementById('rating2').value = rating.design || 0;
+                    document.getElementById('rating3').value = rating.technical || 0;
+                    document.getElementById('rating4').value = rating.innovation || 0;
+                    document.getElementById('rating5').value = rating.presentation || 0;
+                    document.getElementById('ratingComment').value = rating.comment || '';
+                    updateTotalScore();
+                } else {
+                    // Очистить форму
+                    for (let i = 1; i <= 5; i++) {
+                        document.getElementById('rating' + i).value = 0;
+                        document.getElementById('score' + i).textContent = '0';
+                    }
+                    document.getElementById('ratingComment').value = '';
+                    document.getElementById('totalScore').textContent = '0';
+                }
+            } catch (err) {
+                console.error("Load rating error:", err);
+            }
+        }
+
+        // Обновить итоговую оценку
+        window.updateTotalScore = () => {
+            const scores = [1, 2, 3, 4, 5].map(i => parseInt(document.getElementById('rating' + i).value));
+            const total = scores.reduce((a, b) => a + b, 0);
+            document.getElementById('totalScore').textContent = total;
+            
+            // Обновить отдельные счётчики
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById('score' + i).textContent = document.getElementById('rating' + i).value;
+            }
+        };
+
+        // Обновить счётчик символов в комментарии
+        document.getElementById('ratingComment')?.addEventListener('input', (e) => {
+            document.getElementById('charCount').textContent = e.target.value.length;
+        });
 
         // Закрытие модала по клику вне
         document.getElementById('projectModal')?.addEventListener('click', (e) => {
@@ -526,6 +997,32 @@
             }
         });
 
+        // Функции для модалов документов
+        window.openTermsModal = () => {
+            document.getElementById('termsModal').classList.add('active');
+        };
+
+        window.closeTermsModal = () => {
+            document.getElementById('termsModal').classList.remove('active');
+        };
+
+        window.openPrivacyModal = () => {
+            document.getElementById('privacyModal').classList.add('active');
+        };
+
+        window.closePrivacyModal = () => {
+            document.getElementById('privacyModal').classList.remove('active');
+        };
+
+        // Закрытие документов по клику вне и Escape
+        document.getElementById('termsModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'termsModal') closeTermsModal();
+        });
+
+        document.getElementById('privacyModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'privacyModal') closePrivacyModal();
+        });
+
         // Закрытие модала по Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
@@ -534,6 +1031,15 @@
                 }
                 if (!document.getElementById('adminAuthModal').classList.contains('hidden')) {
                     closeAdminAuthModal();
+                }
+                if (document.getElementById('termsModal').classList.contains('active')) {
+                    closeTermsModal();
+                }
+                if (document.getElementById('privacyModal').classList.contains('active')) {
+                    closePrivacyModal();
+                }
+                if (!document.getElementById('ratingModal').classList.contains('hidden')) {
+                    closeRatingModal();
                 }
             }
         });
@@ -595,6 +1101,14 @@
                                     </a>
                                 </div>
                             </td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="flex items-center justify-center gap-2">
+                                    ${d.rating && d.rating.score ? `<span class="text-sm font-bold text-yellow-400">${d.rating.score}/100</span>` : `<span class="text-xs text-slate-500">—</span>`}
+                                    <button onclick="openRatingModal('${docSnap.id}', '${d.team || 'Без имени'}')" class="text-yellow-500/30 hover:text-yellow-500 hover:bg-yellow-500/10 p-2 rounded-lg transition-all" title="Оценить">
+                                        <i class="fas fa-star"></i>
+                                    </button>
+                                </div>
+                            </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex items-center gap-2 justify-end">
                                     <button onclick="viewEntry('${docSnap.id}')" class="text-blue-500/30 hover:text-blue-500 hover:bg-blue-500/10 p-2 rounded-lg transition-all">
@@ -613,7 +1127,13 @@
         // Обработка формы
         document.getElementById('submissionForm')?.addEventListener('submit', async (e) => {
             e.preventDefault();
-            if (!currentUser) return alert("Подождите авторизации...");
+            if (!currentUser) return window.toast("Подождите авторизации...", 'warning');
+
+            // Проверка check-box
+            if (!document.getElementById('agreeTerms').checked) {
+                window.toast("Согласитесь с условиями использования", 'warning');
+                return;
+            }
 
             const data = {
                 team: document.getElementById('teamName').value,
@@ -628,12 +1148,12 @@
             try {
                 await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'submissions'), data);
                 console.log("✅ Проект успешно отправлен");
-                alert("Проект успешно отправлен!");
+                window.toast('Проект успешно отправлен!', 'success');
                 e.target.reset();
                 window.switchTab('home');
             } catch (err) { 
                 console.error("Submission error:", err);
-                alert("Ошибка при отправке: " + (err.message || "Попробуйте позже")); 
+                window.toast("Ошибка при отправке: " + (err.message || "Попробуйте позже"), 'error');
             }
         });
 
@@ -646,8 +1166,51 @@
                 document.getElementById('adminAuthModal').classList.add('hidden');
                 window.switchTab('admin');
                 e.target.reset();
+                window.toast('Успешный вход в панель жюри', 'success');
             } else {
-                alert("Неверный пароль");
+                window.toast('Неверный пароль', 'error');
+            }
+        });
+
+        // Обработка формы оценивания
+        document.getElementById('ratingForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!currentRatingProjectId) {
+                window.toast('Ошибка: проект не выбран', 'error');
+                return;
+            }
+            
+            const ratingData = {
+                functionality: parseInt(document.getElementById('rating1').value),
+                design: parseInt(document.getElementById('rating2').value),
+                technical: parseInt(document.getElementById('rating3').value),
+                innovation: parseInt(document.getElementById('rating4').value),
+                presentation: parseInt(document.getElementById('rating5').value),
+                comment: document.getElementById('ratingComment').value,
+                ratedBy: currentUser?.email || 'admin',
+                ratedAt: Date.now()
+            };
+            
+            try {
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'submissions', currentRatingProjectId), 
+                    { rating: ratingData }, 
+                    { merge: true }
+                );
+                
+                const totalScore = Object.values(ratingData).slice(0, 5).reduce((a, b) => a + b, 0);
+                window.toast(`Оценка сохранена: ${totalScore}/100`, 'success');
+                closeRatingModal();
+            } catch (err) {
+                console.error("Save rating error:", err);
+                window.toast('Ошибка при сохранении оценки', 'error');
+            }
+        });
+
+        // Закрытие рейтинг-модала по клику вне и Escape
+        document.getElementById('ratingModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'ratingModal') {
+                closeRatingModal();
             }
         });
 
