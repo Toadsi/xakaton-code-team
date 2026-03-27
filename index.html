@@ -101,6 +101,7 @@
             <div class="hidden md:flex items-center gap-8">
                 <button onclick="switchTab('home')" id="btn-home-nav" class="nav-link text-sm font-medium transition-colors py-2 active">Главная</button>
                 <button onclick="switchTab('submit')" id="btn-submit-nav" class="nav-link text-sm font-medium transition-colors py-2">Подать проект</button>
+                <button onclick="switchTab('admin')" id="btn-admin-nav" class="nav-link text-sm font-medium transition-colors py-2 hidden">Жюри</button>
             </div>
         </div>
     </nav>
@@ -397,6 +398,16 @@
             
             return true;
         };
+
+        // Показать кнопку админа если есть доступ
+        window.showAdminButton = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const adminKey = urlParams.get('admin');
+            
+            if (adminKey === ADMIN_SECRET_KEY) {
+                document.getElementById('btn-admin-nav').classList.remove('hidden');
+            }
+        };
         
         // Переход в админ-панель
         window.requestAdmin = () => {
@@ -592,6 +603,7 @@
 
         // Запуск
         window.addEventListener('DOMContentLoaded', () => {
+            showAdminButton();
             initAuth();
         });
     </script>
